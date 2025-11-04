@@ -12,46 +12,53 @@
 
 <body>
 
-    <nav class="topo">
-        <button class="menu" onclick="window.location.href='/tabela/'">☰</button>
-        <button class="carrinhoTop" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
-    </nav>
+<nav class="topo">
+    <button class="menu" onclick="window.location.href='/tabela/'">☰</button>
+    <button class="carrinhoTop" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
+</nav>
 
-    <header>
-        <h1>Barão das Bebidas</h1>
-    </header>
+<header>
+    <h1>Barão das Bebidas</h1>
+</header>
 
-    <main>
-        <h2>Olá</h2>
-        <h2 class="saudacao">Bem vindo ao Barão das Bebidas</h2>
-        <div class="pesquisar">
-            <input id="procurar" type="text" placeholder="Procurar...">
-            <button class="botaoPesquisa">🎤</button>
-        </div>
+<main>
+    <h2>Olá</h2>
+    <h2 class="saudacao">Bem vindo ao Barão das Bebidas</h2>
+    <div class="pesquisar">
+        <input id="procurar" type="text" placeholder="Procurar...">
+        <button class="botaoPesquisa">🎤</button>
+    </div>
 
 
-        <div>
-            <h2 class="escolhaMarca">Escolha a Marca</h2>
-            <nav class="marca">
-                <!-- Marcas serão inseridas aqui dinamicamente -->
-            </nav>
-        </div>
+    <div>
+        <h2 class="escolhaMarca">Escolha a Marca</h2>
+        <nav class="marca">
+            <!-- Marcas serão inseridas aqui dinamicamente -->
+        </nav>
+    </div>
 
-        <section class="principalCerveja">
-            <h2 class="tituloProduto">Novos Produtos</h2>
-            <div class="cerveja">
-            </div>
-        </section>
-    </main>
+    <section class="principalCerveja">
+        <h2 class="tituloBebida">Novos Produtos</h2>
+        <div class="cerveja">
+  {% for bebida in bebida %}
+    <div class="card">
+      <h4>{{ bebida.nome }}</h4>
+      <!-- outros campos -->
+    </div>
+  {% endfor %}
+</div>
 
-    <nav class="menuInferior">
-        <button class="inicioB" onclick="window.location.href='/'">Inicio</button>
-        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Favoritos</button>
-        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
-        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Pagamentos</button>
-    </nav>
+    </section>
+</main>
 
-    <script src="{% static 'js/Principal.js' %}"></script>
+<nav class="menuInferior">
+    <button class="inicioB" onclick="window.location.href='/'">Inicio</button>
+    <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Favoritos</button>
+    <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
+    <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Pagamentos</button>
+</nav>
+
+<script src="{% static 'js/Principal.js' %}"></script>
 </body>
 
 </html>
