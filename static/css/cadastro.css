@@ -1,0 +1,295 @@
+@charset "UTF-8";
+
+/* Reset básico e configuração de fonte */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(249, 222, 71);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    color: white;
+    background-color: #333;
+    padding: 20px;
+    width: 100%;
+}
+
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 180px;
+    background-color: #333;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-lateral li {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.menu-lateral a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 0;
+    display: block;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.menu-lateral a:hover,
+.menu-lateral a.ativo {
+    background-color: #f2b705;
+    color: black;
+    border-radius: 4px;
+    text-decoration: underline;
+}
+
+.menu-lateral.visivel {
+    transform: translateX(0);
+}
+
+.botao-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    padding: 0;
+}
+
+.botao-menu img {
+    width: 24px;
+    height: auto;
+    filter: invert(1);
+    /* deixa o ícone branco em fundo escuro, remova se desnecessário */
+}
+
+.botao-menu:hover {
+    background-color: #f2b705ab;
+}
+
+body.menu-aberto {
+    margin-left: 190px;
+}
+
+@media (max-width: 600px) {
+    body.menu-aberto {
+        margin-left: 0;
+    }
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.tabela-cadastro {
+    position: absolute;
+    top: 75px;
+    right: 10px;
+    padding: 10px 15px;
+}
+
+.botao-tabela {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.botao-tabela:hover {
+    background-color: #333333e8;
+}
+
+/* Estilo dos formulários */
+form {
+    width: 90%;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Rótulos */
+label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+select {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+select:invalid {
+    border-color: red;
+    background-color: #fff0f0;
+}
+
+select:focus:invalid {
+    box-shadow: 0 0 4px red;
+}
+
+
+input:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Pré-visualização de imagem */
+img#preview-cadastro {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Campo de opção Alcoólico */
+.Alcoolico {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Botões */
+button {
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button:active {
+    background-color: #222;
+}
+
+/* Responsividade */
+@media only screen and (max-width: 600px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    label,
+    input {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 991px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+input:invalid {
+    border-color: red;
+    background-color: #fff0f0;
+}
+
+input:focus:invalid {
+    outline: none;
+    box-shadow: 0 0 4px red;
+}

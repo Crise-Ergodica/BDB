@@ -1,0 +1,50 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+Lib/
+Scripts/
+pyvenv.cfg
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+*.pot
+local_settings.py
+
+# Media files
+media/
+
+# Static files coletados
+staticfiles/
+static_root/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# PyCharm
+CACHEDIR.TAG
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Outros
+*.bak
+*.tmp
+.env

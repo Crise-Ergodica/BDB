@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barão das Bebidas</title>
+    <link rel="stylesheet" href="{% static 'css/Principal.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Barao_ico.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+
+    <nav class="topo">
+        <button class="menu" onclick="window.location.href='/tabela/'">☰</button>
+        <button class="carrinhoTop" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
+    </nav>
+
+    <header>
+        <h1>Barão das Bebidas</h1>
+    </header>
+
+    <main>
+        <h2>Olá</h2>
+        <h2 class="saudacao">Bem vindo ao Barão das Bebidas</h2>
+        <div class="pesquisar">
+            <input id="procurar" type="text" placeholder="Procurar...">
+            <button class="botaoPesquisa">🎤</button>
+        </div>
+
+
+        <div>
+            <h2 class="escolhaMarca">Escolha a Marca</h2>
+            <nav class="marca">
+                <!-- Marcas serão inseridas aqui dinamicamente -->
+            </nav>
+        </div>
+
+        <section class="principalCerveja">
+            <h2 class="tituloProduto">Novos Produtos</h2>
+            <div class="cerveja">
+            </div>
+        </section>
+    </main>
+
+    <nav class="menuInferior">
+        <button class="inicioB" onclick="window.location.href='/'">Inicio</button>
+        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Favoritos</button>
+        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Carrinho</button>
+        <button class="botoesInferior" onclick="alert('Funcionalidade em desenvolvimento')">Pagamentos</button>
+    </nav>
+
+    <script src="{% static 'js/Principal.js' %}"></script>
+</body>
+
+</html>

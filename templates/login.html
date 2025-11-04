@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="shortcut icon" href="{% static 'images/Barao_ico.ico' %}" type="image/x-icon">
+  <title>Login</title>
+</head>
+<body>
+
+  <main class="container">
+
+    <header>
+      <img src="{% static 'images/BaraoLogo.png' %}" alt="Logo Barão das Bebidas" class="logo">
+    </header>
+
+    <form method="post">
+      {% csrf_token %}
+      
+      <section>
+        <label for="cpf">CPF</label>
+        <div class="input-row">
+          <input type="text" id="cpf" name="cpf" placeholder="___.___.___-__" required>
+        </div>
+      </section>
+
+      <section>
+        <label for="senha">Senha</label>
+        <div class="input-row">
+          <input type="password" id="senha" name="senha" required>
+        </div>
+      </section>
+
+      <section>
+        <label for="email">Email</label>
+        <div class="input-row">
+          <input type="email" id="email" name="email" required>
+        </div>
+      </section>
+
+      <section class="checkbox-row">
+        <label for="lembre">
+          <input type="checkbox" id="lembre" name="lembre" checked>
+          Lembre de mim
+        </label>
+      </section>
+
+      <button type="submit" class="submit-btn">Inscrever-se</button>
+    </form>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+@charset "UTF-8";
+
+:root {
+    --cor-primaria: rgb(255, 204, 0);
+    --cor-fundo-claro: whitesmoke;
+    --cor-texto: black;
+    --cor-hover: rgba(172, 172, 172, 0.549);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    text-align: center;
+}
+
+/* ===== TOPO NAV ===== */
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--cor-fundo-claro);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu,
+.carrinhoTop {
+    border-radius: 50%;
+    padding: 12px;
+    border: none;
+    background-color: var(--cor-fundo-claro);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu:hover,
+.carrinhoTop:hover {
+    background-color: var(--cor-primaria);
+    transform: translateY(-5px);
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: cursive;
+    text-shadow: 2px 2px 3px rgba(142, 142, 142, 0.721);
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.saudacao {
+    color: rgba(149, 149, 149, 0.7);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* ===== PESQUISA ===== */
+.pesquisar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#procurar {
+    background-color: var(--cor-fundo-claro);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 70%;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    max-width: 500px;
+}
+
+#procurar:hover {
+    background-color: var(--cor-hover);
+}
+
+.botaoPesquisa {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--cor-primaria);
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.botaoPesquisa:hover {
+    background-color: var(--cor-fundo-claro);
+}
+
+/* ===== MARCAS ===== */
+.escolhaMarca {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.marca {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.imgMarca {
+    background-color: var(--cor-fundo-claro);
+    padding: 5px;
+    border-radius: 10px;
+    height: 80px;
+    box-shadow: 2px 2px 2px 2px rgba(146, 146, 146, 0.548);
+    transition: 0.3s;
+}
+
+.imgMarca:hover {
+    background-color: var(--cor-primaria);
+    transform: translateY(-5px);
+}
+
+/* ===== PRODUTOS ===== */
+.tituloProduto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 20px 0 10px;
+
+}
+
+.principalCerveja {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 100px;
+}
+
+.cerveja {
+    position: relative;
+    background-color: var(--cor-fundo-claro);
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 160px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px rgba(146, 146, 146, 0.548);
+    text-align: center;
+}
+
+.cerveja:hover {
+    background-color: var(--cor-primaria);
+    transform: translateY(-5px);
+}
+
+.cerveja img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.cerveja p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--cor-texto);
+    word-break: break-word;
+}
+
+/* ===== BOTÃO FAVORITO ===== */
+.favorito {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    padding: 6px;
+    z-index: 1;
+}
+
+.favorito:hover {
+    background: red;
+    color: white;
+}
+
+/* ===== MENU INFERIOR ===== */
+.menuInferior {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--cor-fundo-claro);
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menuInferior button {
+    flex: 1;
+    border: none;
+    font-size: 16px;
+    padding: 15px;
+    cursor: pointer;
+    background-color: var(--cor-fundo-claro);
+    transition: 0.3s;
+}
+
+.menuInferior button:hover {
+    background-color: white;
+}
+
+.inicioB {
+    color: var(--cor-primaria);
+    font-weight: bold;
+}
+
+/* ===== RESPONSIVO ===== */
+@media only screen and (max-width: 600px) {
+    .menu, .carrinhoTop {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    header {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    .saudacao {
+        font-size: 0.9rem;
+    }
+
+    #procurar {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .botaoPesquisa {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .imgMarca {
+        height: 60px;
+    }
+
+    .cerveja {
+        max-width: 120px;
+    }
+
+    .menuInferior button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 991px) {
+    #procurar {
+        width: 90%;
+    }
+
+    .imgMarca {
+        height: 70px;
+    }
+
+    .cerveja {
+        max-width: 150px;
+    }
+}
