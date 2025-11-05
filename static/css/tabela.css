@@ -91,3 +91,59 @@ tbody tr img {
   max-width: 80px;
   border-radius: 4px;
 }
+
+.tabela-container {
+  max-width: 820px;
+  margin: 40px auto;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  background: #f9f9fb;
+}
+
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.campo label {
+  min-width: 140px;
+}
+
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="file"],
+.campo select {
+  flex: 1;
+  font-size: 1em;
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+}
+
+.botao-cadastro {
+  justify-content: flex-end;
+}
+
+.botao-cadastro button {
+  padding: 8px 22px;
+  background: #20a77f;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1.05em;
+}
+.botao-cadastro button:hover {
+  background: #189668;
+}

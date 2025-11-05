@@ -13,6 +13,8 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('api/marcas/', views.api_marcas, name='api_marcas'),
     path('api/bebidas/', views.api_bebidas, name='api_bebidas'),
+    path('api/delete_bebida/', views.delete_bebida, name='delete_bebida'),
+    path('api/delete_marca/', views.delete_marca, name='delete_marca'),
 ]
 
 # Servir arquivos de mídia e estáticos durante o desenvolvimento

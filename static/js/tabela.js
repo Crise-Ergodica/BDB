@@ -1,22 +1,24 @@
 // Carregar e filtrar Bebidas e Marcas via API Django, preenchendo as tabelas dinamicamente
 document.addEventListener('DOMContentLoaded', () => {
-  // Carregamento assíncrono das marcas, necessário para filtro!
   let marcasCache = [];
 
   function fetchMarcas() {
-    return fetch('/api/marcas/').then(r => r.json()).then(data => {
-      marcasCache = data;
-      preencherTabelaMarcas(data);
-    });
+    return fetch('/api/marcas/')
+      .then(r => r.json())
+      .then(data => {
+        marcasCache = data;
+        preencherTabelaMarcas(data);
+      });
   }
 
   function fetchBebidas() {
-    return fetch('/api/bebidas').then(r => r.json()).then(data => {
-      preencherTabelaBebidas(data);
-    });
+    return fetch('/api/bebidas/')
+      .then(r => r.json())
+      .then(data => {
+        preencherTabelaBebidas(data);
+      });
   }
 
-  // Preenche tabela de marcas
   function preencherTabelaMarcas(marcas) {
     const tbody = document.querySelector('#tabela-marcas tbody');
     const busca = document.getElementById('busca-nome-marca').value.toLowerCase();
@@ -25,15 +27,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${marca.nome}</td>
-        <td>
-          ${marca.imagem ? `<img src="${marca.imagem}" alt="${marca.nome}">` : ''}
-        </td>
+        <td>${marca.imagem ? `<img src="${marca.imagem}" alt="${marca.nome}">` : ''}</td>
+        <td><button class="excluir-marca" data-id="${marca.id}">Excluir</button></td>
       `;
       tbody.appendChild(tr);
     });
+
+    // Adiciona evento de exclusão
+    tbody.querySelectorAll('.excluir-marca').forEach(btn => {
+      btn.onclick = function() {
+        if (confirm('Deseja realmente excluir esta marca?')) {
+          fetch('/api/delete_marca/', {
+            method: 'POST',
+            body: new URLSearchParams({id: btn.dataset.id}),
+          })
+          .then(r => r.json())
+          .then(res => {
+            if(res.ok) fetchMarcas();
+            else alert('Erro ao excluir!');
+          });
+        }
+      }
+    });
   }
 
-  // Preenche tabela de bebidas
   function preencherTabelaBebidas(bebidas) {
     const tbody = document.querySelector('#tabela-bebidas tbody');
     const nomeFiltro = document.getElementById('busca-nome-bebida').value.toLowerCase();
@@ -56,12 +73,29 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${bebida.alcoolico}</td>
         <td>${bebida.imagem ? `<img src="${bebida.imagem}" alt="${bebida.nome}">` : ''}</td>
         <td>${bebida.data_cadastro ? formatarData(bebida.data_cadastro) : ''}</td>
+        <td><button class="excluir-bebida" data-id="${bebida.id}">Excluir</button></td>
       `;
       tbody.appendChild(tr);
     });
+
+    // Adiciona evento de exclusão
+    tbody.querySelectorAll('.excluir-bebida').forEach(btn => {
+      btn.onclick = function() {
+        if (confirm('Deseja realmente excluir esta bebida?')) {
+          fetch('/api/delete_bebida/', {
+            method: 'POST',
+            body: new URLSearchParams({id: btn.dataset.id}),
+          })
+          .then(r => r.json())
+          .then(res => {
+            if(res.ok) fetchBebidas();
+            else alert('Erro ao excluir!');
+          });
+        }
+      }
+    });
   }
 
-  // Formatação data (ISO → DD/MM/YYYY HH:MM)
   function formatarData(dataIso) {
     try {
       const dt = new Date(dataIso);
@@ -76,8 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-filtrar-marcas').onclick = fetchMarcas;
   document.getElementById('filtro-marca-bebida').onchange = fetchBebidas;
   document.getElementById('filtro-alcoolico-bebida').onchange = fetchBebidas;
-
-  // Filtragem instantânea ao digitar nos campos
   document.getElementById('busca-nome-bebida').oninput = fetchBebidas;
   document.getElementById('busca-nome-marca').oninput = fetchMarcas;
 

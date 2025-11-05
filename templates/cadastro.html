@@ -1,86 +1,82 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barão cadastro</title>
-    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
-    <link rel="shortcut icon" href="{% static 'images/Barao_ico.ico' %}" type="image/x-icon">
+    <title>Cadastro de Bebidas e Marcas</title>
+    <link rel="stylesheet" href="{% static 'css/tabela.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 </head>
-
 <body>
-    <header>
-        <h1>Cadastro de Bebidas</h1>
-        <!-- Botão para abrir/fechar o menu -->
-        <button id="btn-toggle-menu" class="botao-menu">
-            <img src="{% static 'images/3_linhas.png' %}" alt="Menu" width="30">
-        </button>
-
-        <!-- Menu lateral -->
-        <nav id="menu-lateral" class="menu-lateral oculto">
-            <a href="{% url 'index' %}">🏠 Página Inicial do Aplicativo</a>
-            <a href="{% url 'tabela' %}">📋 Tabela de Bebidas/ Marcas</a>
-            <a href="{% url 'cadastro' %}">📝 Cadastro</a>
-            <a href="{% url 'login' %}">🚪 Sair</a>
-        </nav>
-    </header>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        <label for="imagem">Imagem da bebida:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*" required>
-        <img id="preview-cadastro" width="100" alt="Prévia da imagem">
-
-        <label for="id">ID:</label>
-        <input type="number" name="id" id="id" required>
-
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required autocomplete="off">
-
-        <label for="valor">Valor:</label>
-        <input type="number" step=".01" id="valor" name="valor" required>
-
-        <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" name="quantidade" required>
-
-        <div class="Alcoolico">
-            <label for="alcoolico">Alcoólico:</label>
-            <div class="radio-group">
-                <label><input type="radio" name="opcao" id="alcoolico" value="sim" checked required> Sim</label>
-                <label><input type="radio" name="opcao" value="nao"> Não</label>
-            </div>
-        </div>
-
-        <label for="marca-selecao">Marca da bebida:</label>
-        <select id="marca-selecao" name="marca" required>
-            <option value="">Selecione uma marca</option>
-            {% for marca in marcas %}
-                <option value="{{ marca.id }}">{{ marca.nome }}</option>
-            {% endfor %}
-        </select>
-
-        <button type="submit">Salvar</button>
-    </form>
-
-    <!-- Área de cadastro de marcas -->
-    <form id="form-marca" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1 class="edit-excluir">Cadastro de Marcas</h1>
-
-        <label for="imagem-marca">Imagem da marca:</label>
-        <input type="file" id="imagem-marca" name="imagem_marca" accept="image/*" required>
-        <img id="preview-marca" width="100" alt="Prévia da imagem da marca">
-
-        <label for="nome-marca">Nome da marca:</label>
-        <input type="text" id="nome-marca" name="nome_marca" required autocomplete="off">
-
-        <button type="submit" name="tipo_form" value="marca">Salvar Marca</button>
-    </form>
-
-    <script src="{% static 'js/cadastro.js' %}"></script>
+<div class="sidebar">
+  <h2>Bebidas</h2>
+  <ul>
+    <li><a href="{% url 'index' %}">Início</a></li>
+    <li><a href="{% url 'tabela' %}">Tabela</a></li>
+    <li><a href="{% url 'cadastro' %}" class="active">Cadastro</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+  </ul>
+</div>
+<div class="tabela-container">
+  <h1>Cadastro de Marca</h1>
+  <form class="form-cadastro" method="post" enctype="multipart/form-data" action="{% url 'cadastro' %}">
+    {% csrf_token %}
+    <input type="hidden" name="tipo" value="marca">
+    <div class="campo">
+      <label for="nome_marca">Nome:</label>
+      <input type="text" name="nome_marca" id="nome_marca" required>
+    </div>
+    <div class="campo">
+      <label for="imagem_marca">Imagem:</label>
+      <input type="file" name="imagem_marca" id="imagem_marca">
+    </div>
+    <div class="campo botao-cadastro">
+      <button type="submit">Cadastrar Marca</button>
+    </div>
+  </form>
+  <hr>
+  <h1>Cadastro de Bebida</h1>
+  <form class="form-cadastro" method="post" enctype="multipart/form-data" action="{% url 'cadastro' %}">
+    {% csrf_token %}
+    <input type="hidden" name="tipo" value="bebida">
+    <div class="campo">
+      <label for="nome_bebida">Nome:</label>
+      <input type="text" name="nome_bebida" id="nome_bebida" required>
+    </div>
+    <div class="campo">
+      <label for="valor_bebida">Valor:</label>
+      <input type="number" step="0.01" name="valor_bebida" id="valor_bebida" required>
+    </div>
+    <div class="campo">
+      <label for="quantidade_bebida">Quantidade (ml):</label>
+      <input type="number" name="quantidade_bebida" id="quantidade_bebida" required>
+    </div>
+    <div class="campo">
+      <label for="alcoolico_bebida">Alcoólico?</label>
+      <select name="alcoolico_bebida" id="alcoolico_bebida" required>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+    </div>
+    <div class="campo">
+      <label for="marca_bebida">Marca:</label>
+      <select name="marca_bebida" id="marca_bebida" required>
+        {% for marca in marcas %}
+          <option value="{{ marca.id }}">{{ marca.nome }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="imagem_bebida">Imagem:</label>
+      <input type="file" name="imagem_bebida" id="imagem_bebida">
+    </div>
+    <div class="campo botao-cadastro">
+      <button type="submit">Cadastrar Bebida</button>
+    </div>
+    {% if msg %}
+      <p>{{ msg }}</p>
+    {% endif %}
+  </form>
+</div>
 </body>
-
 </html>
