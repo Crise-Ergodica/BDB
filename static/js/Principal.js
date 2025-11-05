@@ -36,7 +36,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     bebidas.forEach(bebida => {
       const div = document.createElement("div");
-      div.className = "produto-item";
+      div.className = "card";  // para aplicar o estilo certo
+      div.style.position = "relative";  // para funcionar com botão favorito
+
 
       const btnFavorito = document.createElement("button");
       btnFavorito.className = "favorito";

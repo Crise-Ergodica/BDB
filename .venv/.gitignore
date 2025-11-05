@@ -17,13 +17,9 @@ pyvenv.cfg
 
 # Django
 *.log
-db.sqlite3
 db.sqlite3-journal
 *.pot
 local_settings.py
-
-# Media files
-media/
 
 # Static files coletados
 staticfiles/
