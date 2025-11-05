@@ -9,8 +9,8 @@ def cadastro(request):
     return render(request, 'cadastro.html')
 
 def tabela(request):
-    return render(request, 'tabela.html')
-
+    marcas = Marca.objects.all()
+    return render(request, 'tabela.html', {'marcas': marcas})
 def login_view(request):
     return render(request, 'login.html')
 

@@ -1,106 +1,78 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lista de Itens</title>
-  <link rel="stylesheet" href="{% static 'css/tabela.css' %}" />
-  <link rel="shortcut icon" href="{% static 'images/Barao_ico.ico' %}" type="image/x-icon">
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Tabela de Bebidas e Marcas</title>
+  <link rel="stylesheet" href="{% static 'css/tabela.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 </head>
-
 <body>
-  <header>
-    <h1>Lista de Bebidas e Marcas Cadastradas</h1>
-    <!-- Botão para abrir/fechar o menu -->
-    <button id="btn-toggle-menu" class="botao-menu">
-      <img src="{% static 'images/3_linhas.png' %}" alt="Menu" width="30">
-    </button>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Bebidas</h2>
+      <ul>
+        <li><a href="{% url 'index' %}" class="active">Tela Inicial</a></li>
+        <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <!-- Adicione mais itens se quiser -->
+      </ul>
+    </div>
+<div class="main-content">
+    <div class="tabela-container">
+      <h1>Bebidas</h1>
+      <form id="filtro-bebidas-form" method="get">
+        <input type="text" id="busca-nome-bebida" placeholder="Buscar por nome...">
+        <select id="filtro-marca-bebida">
+          <option value="">Todas as Marcas</option>
+          {% for marca in marcas %}
+            <option value="{{ marca.nome }}">{{ marca.nome }}</option>
+          {% endfor %}
+        </select>
+        <select id="filtro-alcoolico-bebida">
+          <option value="">Todas</option>
+          <option value="sim">Alcoólicas</option>
+          <option value="nao">Não Alcoólicas</option>
+        </select>
+        <button type="button" id="btn-filtrar-bebidas">Filtrar</button>
+      </form>
+      <table id="tabela-bebidas">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Valor</th>
+            <th>Quantidade (ml)</th>
+            <th>Alcoólico</th>
+            <th>Imagem</th>
+            <th>Data cadastro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Será preenchido pelo JS -->
+        </tbody>
+      </table>
 
-    <!-- Menu lateral -->
-    <nav id="menu-lateral" class="menu-lateral oculto">
-      <a href="{% url 'index' %}">🏠 Página Inicial do Aplicativo</a>
-      <a href="{% url 'tabela' %}">📋 Tabela de Bebidas/ Marcas</a>
-      <a href="{% url 'cadastro' %}">📝 Cadastro</a>
-      <a href="{% url 'login' %}">🚪 Sair</a>
-    </nav>
-  </header>
+      <hr>
 
-  <h2>Bebidas</h2>
-  <table id="tabela-bebidas">
-    <thead>
-      <tr>
-        <th><input type="text" id="filtro-id" placeholder="Filtrar ID"></th>
-        <th><input type="text" id="filtro-nome" placeholder="Filtrar Nome"></th>
-        <th><input type="text" id="filtro-valor" placeholder="Filtrar Valor"></th>
-        <th><input type="text" id="filtro-quantidade" placeholder="Filtrar Quantidade"></th>
-        <th><input type="text" id="filtro-alcoolico" placeholder="Filtrar Alcoólico"></th>
-        <th><input type="text" id="filtro-marca" placeholder="Filtrar Marca"></th>
-        <th colspan="2"></th>
-      </tr>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Valor (R$)</th>
-        <th>Quantidade</th>
-        <th>Alcoólico</th>
-        <th>Marca</th>
-        <th>Imagem</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for bebida in bebidas %}
-      <tr>
-        <td>{{ bebida.id }}</td>
-        <td>{{ bebida.nome }}</td>
-        <td>R$ {{ bebida.valor }}</td>
-        <td>{{ bebida.quantidade }}</td>
-        <td>{{ bebida.alcoolico }}</td>
-        <td>{{ bebida.marca }}</td>
-        <td><img src="{{ bebida.imagem }}" width="50" alt="{{ bebida.nome }}"></td>
-        <td>
-          <button class="btn-editar">Editar</button>
-          <button class="btn-excluir">Excluir</button>
-        </td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="8">Nenhuma bebida cadastrada</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h2>Marcas</h2>
-  <table id="tabela-marcas">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Imagem</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for marca in marcas %}
-      <tr>
-        <td>{{ marca.nome }}</td>
-        <td><img src="{{ marca.imagem }}" width="50" alt="{{ marca.nome }}"></td>
-        <td>
-          <button class="btn-editar">Editar</button>
-          <button class="btn-excluir">Excluir</button>
-        </td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="3">Nenhuma marca cadastrada</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <script src="{% static 'js/tabela.js' %}"></script>
+      <h1>Marcas</h1>
+      <form id="filtro-marcas-form" method="get">
+        <input type="text" id="busca-nome-marca" placeholder="Buscar Marca...">
+        <button type="button" id="btn-filtrar-marcas">Filtrar</button>
+      </form>
+      <table id="tabela-marcas">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Imagem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Será preenchido pelo JS -->
+        </tbody>
+      </table>
+    </div>
+</div>
+<script src="{% static 'js/tabela.js' %}"></script>
 </body>
-
 </html>
